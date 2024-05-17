@@ -1,14 +1,24 @@
 # Ex.No:1a  			Study of Socket Programming
 
+### Name: Hari Prasath. P
+### Reg. No : 212223230070
+
 ## Aim: 
+
 To perform a study on Socket Programming
+
 ## Introduction:
 
  	Socket programming is a crucial aspect of network communication, allowing for data exchange between computers over a network. It forms the backbone of various networked applications, enabling communication between clients and servers. This study explores the fundamental concepts of socket programming, its use cases, and provides a practical example to demonstrate its implementation.
+
 ## Understanding Socket Programming:
-	Socket programming involves the use of sockets, which serve as endpoints for communication. A socket is identified by an IP address and a port number, and it facilitates data transfer between a client and a server. The two main types of sockets are Stream Sockets, which provide a reliable, connection-oriented communication, and Datagram Sockets, which are connectionless and suitable for scenarios where reliability is less critical.
+
+ 	Socket programming involves the use of sockets, which serve as endpoints for communication. A socket is identified by an IP address and a port number, and it facilitates data transfer between a client and a server. The two main types of sockets are Stream Sockets, which provide a reliable, connection-oriented communication, and Datagram Sockets, which are connectionless and suitable for scenarios where reliability is less critical.
+
 ## Key Concepts in Socket Programming:
+
 1.Sockets
+
 •	A socket is a software representation of a communication endpoint in a network.
 •	It is identified by an IP address and a port number.
 •	Sockets can be classified into two main types: Stream Sockets and Datagram Sockets.
@@ -20,7 +30,7 @@ To perform a study on Socket Programming
 •	The server listens for incoming connections from clients, while clients initiate connections to the server.
 •	Servers are passive, waiting for connection requests, and clients are active, initiating communication.
 
-3, TCP/IP Protocol:
+3. TCP/IP Protocol:
 
 •	Transmission Control Protocol (TCP) and Internet Protocol (IP) are the foundational protocols for socket programming.
 •	TCP provides reliable, connection-oriented communication, ensuring data integrity and order.
@@ -44,7 +54,9 @@ Clients create a socket using socket() and connect to a server using connect().
 After establishing a connection, clients can send and receive data using send() and recv().
 
 ## Use Cases of Socket Programming:
+
 Socket programming finds applications in various domains, including web development, file transfer protocols, online gaming, and real-time communication. It is the foundation for protocols like HTTP, FTP, and SMTP, which power the internet. Socket programming enables the development of both server and client applications, facilitating the exchange of information between devices in a networked environment.
+
 ## Example Use Cases:
 
 1.	Web servers: Web servers use socket programming to handle incoming HTTP requests from clients, serving web pages and content.
@@ -53,6 +65,43 @@ Socket programming finds applications in various domains, including web developm
 4.	Networked Games: Online multiplayer games rely on socket programming to facilitate communication between game clients and servers.
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
 
+## Program:
+
+### Client:
+
+import socket
+from datetime import datetime
+s=socket.socket()
+s.bind(('localhost',8002))
+s.listen(5)
+c,addr=s.accept()
+print("Client Address : ",addr)
+now = datetime.now()
+c.send(now.strftime("Date: %d/%m/%Y and Time: %H:%M:%S").encode())
+ack=c.recv(1024).decode()
+if ack:
+print(ack)
+c.close()
+
+### Server:
+
+import socket
+s=socket.socket()
+s.connect(('localhost',8002))
+print(s.getsockname())
+print(s.recv(1024).decode())
+s.send("acknowledgement recived from the server".encode())
+
+## Output:
+
+### Client:
+
+![322823302-865da7ab-25ee-4a63-b241-746ed1703cda](https://github.com/Hari-Prasath-P-08/SocketStudy/assets/139455593/3ea37521-a46c-42a1-80dc-549ac4ac2f4f)
+
+### Server:
+
+![322823340-24cd24c7-47aa-4e46-8ffa-35e0aa277f02](https://github.com/Hari-Prasath-P-08/SocketStudy/assets/139455593/6c56cbb8-2bb6-47bd-a631-b415eadd64df)
 
 ## Result:
-Thus the study of Socket Programming Completed Successfully
+
+Thus the study of Socket Programming Completed Successfully.
