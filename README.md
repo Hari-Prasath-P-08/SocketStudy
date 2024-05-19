@@ -68,7 +68,8 @@ Socket programming finds applications in various domains, including web developm
 ## Program:
 
 ### Client:
-
+ 
+ ```python
 import socket
 from datetime import datetime
 s=socket.socket()
@@ -80,17 +81,20 @@ now = datetime.now()
 c.send(now.strftime("Date: %d/%m/%Y and Time: %H:%M:%S").encode())
 ack=c.recv(1024).decode()
 if ack:
-print(ack)
+ print(ack)
 c.close()
+```
 
 ### Server:
 
+```python
 import socket
 s=socket.socket()
 s.connect(('localhost',8002))
 print(s.getsockname())
 print(s.recv(1024).decode())
 s.send("acknowledgement recived from the server".encode())
+```
 
 ## Output:
 
